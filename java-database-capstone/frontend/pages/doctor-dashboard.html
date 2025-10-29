@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doktor Paneli - Smart Clinic</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="dashboard-page">
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>🏥 Smart Clinic</h2>
+                <p>Doktor Paneli</p>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item active">
+                        <a href="#dashboard" class="nav-link">📊 Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#appointments" class="nav-link">📅 Randevularım</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#patients" class="nav-link">👥 Hastalarım</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#prescriptions" class="nav-link">💊 Reçeteler</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#medical-records" class="nav-link">🏥 Tıbbi Kayıtlar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../index.html" class="nav-link">🚪 Çıkış Yap</a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="content-header">
+                <h1>Doktor Dashboard</h1>
+                <div class="user-info">
+                    <span>Hoş geldiniz, Dr. <span id="doctorName">[İsim]</span></span>
+                </div>
+            </header>
+
+            <!-- Dashboard Stats -->
+            <section id="dashboard" class="content-section active">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">📅</div>
+                        <div class="stat-info">
+                            <h3 id="todayAppointments">0</h3>
+                            <p>Bugünkü Randevular</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">👥</div>
+                        <div class="stat-info">
+                            <h3 id="totalPatients">0</h3>
+                            <p>Toplam Hasta</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">💊</div>
+                        <div class="stat-info">
+                            <h3 id="totalPrescriptions">0</h3>
+                            <p>Toplam Reçete</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">⏰</div>
+                        <div class="stat-info">
+                            <h3 id="waitingAppointments">0</h3>
+                            <p>Bekleyen Randevu</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-content">
+                    <div class="content-row">
+                        <!-- Bugünkü Randevular -->
+                        <div class="content-col">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3>Bugünkü Randevular</h3>
+                                </div>
+                                <div class="card-body">
+                                    <div id="todayAppointmentsList" class="appointment-list">
+                                        <!-- Bugünkü randevular buraya gelecek -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Yaklaşan Randevular -->
+                        <div class="content-col">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3>Yaklaşan Randevular</h3>
+                                </div>
+                                <div class="card-body">
+                                    <div id="upcomingAppointmentsList" class="appointment-list">
+                                        <!-- Yaklaşan randevular buraya gelecek -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Appointments Management -->
+            <section id="appointments" class="content-section">
+                <div class="section-header">
+                    <h2>Randevularım</h2>
+                    <div class="filter-controls">
+                        <select id="appointmentFilter" onchange="filterAppointments()">
+                            <option value="all">Tüm Randevular</option>
+                            <option value="today">Bugün</option>
+                            <option value="upcoming">Yaklaşan</option>
+                            <option value="completed">Tamamlanan</option>
+                            <option value="cancelled">İptal Edilen</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="table-container">
+                    <table id="appointmentsTable" class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Hasta</th>
+                                <th>Tarih</th>
+                                <th>Saat</th>
+                                <th>Durum</th>
+                                <th>Notlar</th>
+                                <th>İşlemler</th>
+                            </tr>
+                        </thead>
+                        <tbody id="appointmentsTableBody">
+                            <!-- Randevu verileri buraya gelecek -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Patients Management -->
+            <section id="patients" class="content-section">
+                <div class="section-header">
+                    <h2>Hastalarım</h2>
+                    <div class="search-controls">
+                        <input type="text" id="patientSearch" placeholder="Hasta ara..." onkeyup="searchPatients()">
+                    </div>
+                </div>
+                <div class="table-container">
+                    <table id="patientsTable" class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Ad Soyad</th>
+                                <th>Telefon</th>
+                                <th>Email</th>
+                                <th>Son Randevu</th>
+                                <th>İşlemler</th>
+                            </tr>
+                        </thead>
+                        <tbody id="patientsTableBody">
+                            <!-- Hasta verileri buraya gelecek -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Prescriptions Management -->
+            <section id="prescriptions" class="content-section">
+                <div class="section-header">
+                    <h2>Reçetelerim</h2>
+                    <button class="btn btn-primary" onclick="showAddPrescriptionForm()">Yeni Reçete</button>
+                </div>
+                <div class="table-container">
+                    <table id="prescriptionsTable" class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Hasta</th>
+                                <th>Tarih</th>
+                                <th>Teşhis</th>
+                                <th>İlaç Sayısı</th>
+                                <th>Durum</th>
+                                <th>İşlemler</th>
+                            </tr>
+                        </thead>
+                        <tbody id="prescriptionsTableBody">
+                            <!-- Reçete verileri buraya gelecek -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Medical Records -->
+            <section id="medical-records" class="content-section">
+                <div class="section-header">
+                    <h2>Tıbbi Kayıtlar</h2>
+                    <button class="btn btn-primary" onclick="showAddMedicalRecordForm()">Yeni Kayıt</button>
+                </div>
+                <div class="table-container">
+                    <table id="medicalRecordsTable" class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Hasta</th>
+                                <th>Tarih</th>
+                                <th>Teşhis</th>
+                                <th>Semptomlar</th>
+                                <th>Takip Gerekli</th>
+                                <th>İşlemler</th>
+                            </tr>
+                        </thead>
+                        <tbody id="medicalRecordsTableBody">
+                            <!-- Tıbbi kayıt verileri buraya gelecek -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Add Prescription Modal -->
+    <div id="addPrescriptionModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Yeni Reçete Oluştur</h3>
+                <span class="close" onclick="closeAddPrescriptionModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="addPrescriptionForm">
+                    <div class="form-group">
+                        <label for="prescriptionPatient">Hasta Seçin</label>
+                        <select id="prescriptionPatient" required>
+                            <option value="">Hasta seçin</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="prescriptionDiagnosis">Teşhis</label>
+                        <textarea id="prescriptionDiagnosis" rows="3" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="prescriptionInstructions">Talimatlar</label>
+                        <textarea id="prescriptionInstructions" rows="3"></textarea>
+                    </div>
+                    <div class="medications-section">
+                        <h4>İlaçlar</h4>
+                        <div id="medicationsList">
+                            <!-- İlaç listesi buraya gelecek -->
+                        </div>
+                        <button type="button" class="btn btn-secondary" onclick="addMedicationField()">+ İlaç Ekle</button>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Reçeteyi Kaydet</button>
+                        <button type="button" class="btn btn-secondary" onclick="closeAddPrescriptionModal()">İptal</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Medical Record Modal -->
+    <div id="addMedicalRecordModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Yeni Tıbbi Kayıt</h3>
+                <span class="close" onclick="closeAddMedicalRecordModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="addMedicalRecordForm">
+                    <div class="form-group">
+                        <label for="recordPatient">Hasta Seçin</label>
+                        <select id="recordPatient" required>
+                            <option value="">Hasta seçin</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="recordDiagnosis">Teşhis</label>
+                        <input type="text" id="recordDiagnosis" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="recordSymptoms">Semptomlar</label>
+                        <textarea id="recordSymptoms" rows="3" placeholder="Semptomları virgülle ayırarak girin"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="recordTreatment">Tedavi</label>
+                        <textarea id="recordTreatment" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="recordNotes">Notlar</label>
+                        <textarea id="recordNotes" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="recordFollowUp">
+                            Takip gerekli
+                        </label>
+                    </div>
+                    <div class="form-group" id="followUpDateGroup" style="display: none;">
+                        <label for="recordFollowUpDate">Takip Tarihi</label>
+                        <input type="datetime-local" id="recordFollowUpDate">
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Kaydı Kaydet</button>
+                        <button type="button" class="btn btn-secondary" onclick="closeAddMedicalRecordModal()">İptal</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/app.js"></script>
+</body>
+</html>

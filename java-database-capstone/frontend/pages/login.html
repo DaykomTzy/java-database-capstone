@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giriş Yap - Smart Clinic</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="login-page">
+    <div class="login-container">
+        <div class="login-card">
+            <div class="login-header">
+                <h1>🏥 Smart Clinic</h1>
+                <p>Sisteme giriş yapın</p>
+            </div>
+
+            <form id="loginForm" class="login-form">
+                <div class="form-group">
+                    <label for="username">Kullanıcı Adı</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Şifre</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="role">Rol Seçin</label>
+                    <select id="role" name="role" required>
+                        <option value="">Rol seçin</option>
+                        <option value="admin">Yönetici</option>
+                        <option value="doctor">Doktor</option>
+                        <option value="patient">Hasta</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-full">Giriş Yap</button>
+            </form>
+
+            <div class="login-links">
+                <a href="../index.html">Ana Sayfaya Dön</a>
+            </div>
+
+            <div id="loginMessage" class="message"></div>
+        </div>
+    </div>
+
+    <script src="../js/app.js"></script>
+</body>
+</html>

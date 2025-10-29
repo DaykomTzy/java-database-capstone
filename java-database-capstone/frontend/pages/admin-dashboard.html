@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Paneli - Smart Clinic</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="dashboard-page">
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>🏥 Smart Clinic</h2>
+                <p>Admin Paneli</p>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item active">
+                        <a href="#dashboard" class="nav-link">📊 Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#users" class="nav-link">👥 Kullanıcılar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#doctors" class="nav-link">👨‍⚕️ Doktorlar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#patients" class="nav-link">👥 Hastalar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#appointments" class="nav-link">📅 Randevular</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../index.html" class="nav-link">🚪 Çıkış Yap</a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="content-header">
+                <h1>Admin Dashboard</h1>
+                <div class="user-info">
+                    <span>Hoş geldiniz, Admin</span>
+                </div>
+            </header>
+
+            <!-- Dashboard Stats -->
+            <section id="dashboard" class="content-section active">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">👥</div>
+                        <div class="stat-info">
+                            <h3 id="totalUsers">0</h3>
+                            <p>Toplam Kullanıcı</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">👨‍⚕️</div>
+                        <div class="stat-info">
+                            <h3 id="totalDoctors">0</h3>
+                            <p>Toplam Doktor</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">👥</div>
+                        <div class="stat-info">
+                            <h3 id="totalPatients">0</h3>
+                            <p>Toplam Hasta</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">📅</div>
+                        <div class="stat-info">
+                            <h3 id="totalAppointments">0</h3>
+                            <p>Toplam Randevu</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="recent-activity">
+                    <h2>Son Aktiviteler</h2>
+                    <div id="activityList" class="activity-list">
+                        <!-- Aktivite listesi buraya gelecek -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Users Management -->
+            <section id="users" class="content-section">
+                <div class="section-header">
+                    <h2>Kullanıcı Yönetimi</h2>
+                    <button class="btn btn-primary" onclick="showAddUserForm()">Yeni Kullanıcı Ekle</button>
+                </div>
+                <div class="table-container">
+                    <table id="usersTable" class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Kullanıcı Adı</th>
+                                <th>Email</th>
+                                <th>Rol</th>
+                                <th>İşlemler</th>
+                            </tr>
+                        </thead>
+                        <tbody id="usersTableBody">
+                            <!-- Kullanıcı verileri buraya gelecek -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Doctors Management -->
+            <section id="doctors" class="content-section">
+                <div class="section-header">
+                    <h2>Doktor Yönetimi</h2>
+                    <button class="btn btn-primary">Yeni Doktor Ekle</button>
+                </div>
+                <div class="table-container">
+                    <table id="doctorsTable" class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Ad Soyad</th>
+                                <th>Uzmanlık</th>
+                                <th>Lisans No</th>
+                                <th>İşlemler</th>
+                            </tr>
+                        </thead>
+                        <tbody id="doctorsTableBody">
+                            <!-- Doktor verileri buraya gelecek -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Patients Management -->
+            <section id="patients" class="content-section">
+                <div class="section-header">
+                    <h2>Hasta Yönetimi</h2>
+                    <button class="btn btn-primary">Yeni Hasta Ekle</button>
+                </div>
+                <div class="table-container">
+                    <table id="patientsTable" class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Ad Soyad</th>
+                                <th>Email</th>
+                                <th>Telefon</th>
+                                <th>İşlemler</th>
+                            </tr>
+                        </thead>
+                        <tbody id="patientsTableBody">
+                            <!-- Hasta verileri buraya gelecek -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Appointments Management -->
+            <section id="appointments" class="content-section">
+                <div class="section-header">
+                    <h2>Randevu Yönetimi</h2>
+                    <button class="btn btn-primary">Yeni Randevu</button>
+                </div>
+                <div class="table-container">
+                    <table id="appointmentsTable" class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Hasta</th>
+                                <th>Doktor</th>
+                                <th>Tarih</th>
+                                <th>Durum</th>
+                                <th>İşlemler</th>
+                            </tr>
+                        </thead>
+                        <tbody id="appointmentsTableBody">
+                            <!-- Randevu verileri buraya gelecek -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Add User Modal -->
+    <div id="addUserModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Yeni Kullanıcı Ekle</h3>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="addUserForm">
+                    <div class="form-group">
+                        <label for="newUsername">Kullanıcı Adı</label>
+                        <input type="text" id="newUsername" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="newEmail">Email</label>
+                        <input type="email" id="newEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="newPassword">Şifre</label>
+                        <input type="password" id="newPassword" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="newRole">Rol</label>
+                        <select id="newRole" required>
+                            <option value="PATIENT">Hasta</option>
+                            <option value="DOCTOR">Doktor</option>
+                            <option value="ADMIN">Yönetici</option>
+                        </select>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Kaydet</button>
+                        <button type="button" class="btn btn-secondary" onclick="closeAddUserModal()">İptal</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/app.js"></script>
+</body>
+</html>
